@@ -12,6 +12,14 @@ import (
 )
 
 func GetRate(from, to string) (float64, error) {
+	if err := VerifyCurrencyAvailability(from); err != nil {
+		return 0, fmt.Errorf("%w (%s)", err, "base")
+	}
+
+	if err := VerifyCurrencyAvailability(to); err != nil {
+		return 0, fmt.Errorf("%w (%s)", err, "target")
+	}
+
 	cacheDir, err := os.UserCacheDir()
 	if err != nil {
 		return 0, fmt.Errorf("failed to read user cache dir: %w", err)

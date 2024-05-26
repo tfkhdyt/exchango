@@ -75,3 +75,18 @@ func FindAllCurrencies() ([]model.Currency, error) {
 
 	return currencies, nil
 }
+
+func VerifyCurrencyAvailability(currency string) error {
+	currencies, err := FindAllCurrencies()
+	if err != nil {
+		return err
+	}
+
+	for _, cur := range currencies {
+		if strings.EqualFold(cur.Code, currency) {
+			return nil
+		}
+	}
+
+	return fmt.Errorf("currency is not found")
+}
