@@ -1,5 +1,5 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+Copyright © 2024 Taufik Hidayat <tfkhdyt@proton.me>
 */
 package cmd
 
@@ -22,14 +22,9 @@ var (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "exchango [flags] [value]",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	Args: cobra.ExactArgs(1),
+	Short: "Currency Conversion CLI Tool",
+	Long:  `Currency Conversion CLI Tool`,
+	Args:  cobra.ExactArgs(1),
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
@@ -68,22 +63,16 @@ func Execute() {
 func init() {
 	rootCmd.Flags().StringVarP(&from, "from", "f", "", "Base currency code")
 	rootCmd.Flags().StringVarP(&to, "to", "t", "", "Target currency code")
-	// Here you will define your flags and configuration settings.
-	// Cobra supports persistent flags, which, if defined here,
-	// will be global for your application.
 
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.exchango.yaml)")
-
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	// rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	//
 	cacheDir, err := os.UserCacheDir()
-	cobra.CheckErr(err)
+	if err != nil {
+		fmt.Println("failed to read user cache dir:", err.Error())
+	}
 
 	cachePath := path.Join(cacheDir, "exchango")
 	if _, err := os.Stat(cachePath); os.IsNotExist(err) {
-		err := os.MkdirAll(cachePath, os.ModePerm)
-		cobra.CheckErr(err)
+		if err := os.MkdirAll(cachePath, os.ModePerm); err != nil {
+			fmt.Println("failed to create user cache dir:", err.Error())
+		}
 	}
 }
