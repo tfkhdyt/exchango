@@ -49,7 +49,7 @@ var rootCmd = &cobra.Command{
 		rate, err := repo.GetRate(from, to)
 		cobra.CheckErr(err)
 
-		fmt.Println(value * rate)
+		fmt.Printf("%f\n", value*rate)
 	},
 }
 
