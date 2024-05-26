@@ -22,8 +22,8 @@ var (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:     "exchango [flags] [value]",
-	Short:   "Currency Conversion CLI Tool",
-	Long:    `Currency Conversion CLI Tool`,
+	Short:   "Currency Conversion Tool",
+	Long:    `Currency Conversion Tool`,
 	Args:    cobra.ExactArgs(1),
 	Example: "exchango --from IDR --to USD 69420",
 	Version: "0.0.1",
