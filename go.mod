@@ -5,7 +5,6 @@ go 1.22.3
 require (
 	github.com/go-zoox/fetch v1.8.1
 	github.com/spf13/cobra v1.8.0
-	github.com/tfkhdyt/fiber-toolbox v1.3.1
 )
 
 require (
