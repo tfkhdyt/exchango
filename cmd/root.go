@@ -26,7 +26,7 @@ var rootCmd = &cobra.Command{
 	Long:    `Currency Conversion Tool`,
 	Args:    cobra.ExactArgs(1),
 	Example: "exchango --from IDR --to USD 69420",
-	Version: "0.0.1",
+	Version: "0.1.0",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
